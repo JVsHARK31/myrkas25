@@ -9,8 +9,10 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test-db": "node test-database-fixes.js",
-    "fix-db": "node run-database-fix.js"
-  },
+    "fix-db": "node run-database-fix.js",
+    "deploy:check": "node deploy.cjs",
+    "deploy:build": "npm run build && npm run deploy:check"
+  }
   "dependencies": {
     "@supabase/supabase-js": "^2.53.0",
     "dotenv": "^17.2.1",
