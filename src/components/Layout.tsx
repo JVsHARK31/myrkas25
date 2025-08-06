@@ -5,7 +5,7 @@ import {
   Home, Database, PieChart, User, Bell, Search,
   ChevronDown, Sun, Moon, Users, TrendingUp, 
   FolderOpen, Calendar, Package, GraduationCap, Code,
-  LayoutDashboard, Calculator
+  LayoutDashboard, Calculator, DollarSign
 } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 
@@ -24,6 +24,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const navigation = [
     { name: 'Dashboard', href: '/', icon: LayoutDashboard },
     { name: 'Manajemen R-KAS', href: '/rkas', icon: Calculator },
+    { name: 'Detail Anggaran', href: '/budget-detail', icon: DollarSign },
     { name: 'Laporan', href: '/reports', icon: FileText },
     { name: 'Manajemen Pengguna', href: '/users', icon: Users },
     { name: 'Manajemen Siswa', href: '/students', icon: GraduationCap },

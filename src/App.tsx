@@ -19,6 +19,7 @@ import { StudentManagement } from './components/StudentManagement'
 import { InventoryManagement } from './components/InventoryManagement'
 import { DatabaseManagement } from './components/DatabaseManagement'
 import { MasterDataManagement } from './components/MasterDataManagement'
+import BudgetDetail from './pages/BudgetDetail'
 import { FilterOptions } from './types/database'
 
 function App() {
@@ -76,6 +77,7 @@ function App() {
                         <Route path="/notifications" element={<NotificationCenter />} />
                         <Route path="/database" element={<DatabaseManagement />} />
                         <Route path="/master-data" element={<MasterDataManagement />} />
+                        <Route path="/budget-detail" element={<BudgetDetail />} />
                         <Route path="/settings" element={<SystemSettings />} />
                         <Route path="*" element={<Navigate to="/" replace />} />
                       </Routes>

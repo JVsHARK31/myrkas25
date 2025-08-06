@@ -230,6 +230,9 @@ export interface Database {
           realisasi_bulan_12: number | null
           realisasi_tw_4: number | null
           total_realisasi: number | null
+          bidang_kegiatan: string | null
+          standar_nasional: string | null
+          sumber_dana: string | null
           nama_penyedia: string | null
           no_pesanan: string | null
           tanggal: string | null
@@ -313,6 +316,9 @@ export interface Database {
           realisasi_bulan_12?: number | null
           realisasi_tw_4?: number | null
           total_realisasi?: number | null
+          bidang_kegiatan?: string | null
+          standar_nasional?: string | null
+          sumber_dana?: string | null
           nama_penyedia?: string | null
           no_pesanan?: string | null
           tanggal?: string | null
@@ -396,6 +402,9 @@ export interface Database {
           realisasi_bulan_12?: number | null
           realisasi_tw_4?: number | null
           total_realisasi?: number | null
+          bidang_kegiatan?: string | null
+          standar_nasional?: string | null
+          sumber_dana?: string | null
           nama_penyedia?: string | null
           no_pesanan?: string | null
           tanggal?: string | null
@@ -728,8 +737,8 @@ export interface Database {
           action: string
           table_name: string
           record_id: string | null
-          old_values: any | null
-          new_values: any | null
+          old_values: Record<string, unknown> | null
+          new_values: Record<string, unknown> | null
           ip_address: string | null
           user_agent: string | null
           created_at: string
@@ -740,8 +749,8 @@ export interface Database {
           action: string
           table_name: string
           record_id?: string | null
-          old_values?: any | null
-          new_values?: any | null
+          old_values?: Record<string, unknown> | null
+          new_values?: Record<string, unknown> | null
           ip_address?: string | null
           user_agent?: string | null
           created_at?: string
@@ -752,8 +761,8 @@ export interface Database {
           action?: string
           table_name?: string
           record_id?: string | null
-          old_values?: any | null
-          new_values?: any | null
+          old_values?: Record<string, unknown> | null
+          new_values?: Record<string, unknown> | null
           ip_address?: string | null
           user_agent?: string | null
           created_at?: string

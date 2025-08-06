@@ -1,27 +1,51 @@
 export interface KertasKerjaPerubahan {
+  id?: string;
+  
+  // Bidang Information
   kodeBidang: string;
   namaBidang: string;
+  
+  // Standar Information
   kodeStandar: string;
   namaStandar: string;
+  
+  // New Fields
+  bidangKegiatan: string;
+  standarNasional: string;
+  sumberDana: string;
+  
+  // Kegiatan Information
   idGiat: string;
   kodeGiat: string;
   namaGiat: string;
   subtitle: string;
+  
+  // Dana Information
   kodeDana: string;
   namaDana: string;
+  
+  // Rekening Information
   kodeRekening: string;
   namaRekening: string;
+  
+  // Rincian Information
   idRincian: string;
   idKomponen: string;
   kodeKomponen: string;
   namaKomponen: string;
+  
+  // Spesifikasi Barang
   satuan: string;
   merk: string;
   spek: string;
   pajak: string;
+  
+  // Volume dan Harga
   volume: number;
   hargaSatuan: number;
-  koefisien: number;
+  koefisien: string;
+  
+  // Volume Detail (VOL1-VOL4 dengan SAT1-SAT4)
   vol1: number;
   sat1: string;
   vol2: number;
@@ -30,30 +54,34 @@ export interface KertasKerjaPerubahan {
   sat3: string;
   vol4: number;
   sat4: string;
+  
+  // Nilai Rincian
   nilaiRincianMurni: number;
   nilaiRincian: number;
   subRincian: string;
   keteranganRincian: string;
   keterangan: string;
-  // Anggaran Kas Belanja (AKB) per bulan
-  akbBulan1: number;
-  akbBulan2: number;
-  akbBulan3: number;
-  akbTw1: number;
-  akbBulan4: number;
-  akbBulan5: number;
-  akbBulan6: number;
-  akbTw2: number;
-  akbBulan7: number;
-  akbBulan8: number;
-  akbBulan9: number;
-  akbTw3: number;
-  akbBulan10: number;
-  akbBulan11: number;
-  akbBulan12: number;
-  akbTw4: number;
+  
+  // Anggaran Bulanan (BULAN_1 - BULAN_12)
+  anggaranBulan1: number;
+  anggaranBulan2: number;
+  anggaranBulan3: number;
+  anggaranTw1: number;
+  anggaranBulan4: number;
+  anggaranBulan5: number;
+  anggaranBulan6: number;
+  anggaranTw2: number;
+  anggaranBulan7: number;
+  anggaranBulan8: number;
+  anggaranBulan9: number;
+  anggaranTw3: number;
+  anggaranBulan10: number;
+  anggaranBulan11: number;
+  anggaranBulan12: number;
+  anggaranTw4: number;
   totalAkb: number;
-  // Realisasi per bulan
+  
+  // Realisasi Bulanan (BULAN_1 - BULAN_12)
   realisasiBulan1: number;
   realisasiBulan2: number;
   realisasiBulan3: number;
@@ -71,12 +99,39 @@ export interface KertasKerjaPerubahan {
   realisasiBulan12: number;
   realisasiTw4: number;
   totalRealisasi: number;
-  // Data tambahan
-  namaPenyedia: string;
-  noPesanan: string;
-  tanggal: string;
-  noNegosiasi: string;
-  tanggalNegosiasi: string;
+  
+  // Metadata
+  status?: string;
+  periodYear?: number;
+  createdAt?: string;
+  updatedAt?: string;
+  createdBy?: string;
+  updatedBy?: string;
+  
+  // Data tambahan untuk backward compatibility
+  namaPenyedia?: string;
+  noPesanan?: string;
+  tanggal?: string;
+  noNegosiasi?: string;
+  tanggalNegosiasi?: string;
+  
+  // Legacy field mappings (for backward compatibility)
+  akbBulan1?: number;
+  akbBulan2?: number;
+  akbBulan3?: number;
+  akbTw1?: number;
+  akbBulan4?: number;
+  akbBulan5?: number;
+  akbBulan6?: number;
+  akbTw2?: number;
+  akbBulan7?: number;
+  akbBulan8?: number;
+  akbBulan9?: number;
+  akbTw3?: number;
+  akbBulan10?: number;
+  akbBulan11?: number;
+  akbBulan12?: number;
+  akbTw4?: number;
 }
 
 export class CSVParser {
@@ -113,6 +168,10 @@ export class CSVParser {
           namaBidang: this.parseString(columns[1]),
           kodeStandar: this.parseString(columns[2]),
           namaStandar: this.parseString(columns[3]),
+          // New fields with default values
+          bidangKegiatan: this.parseString(columns[75] || 'kurikulum'),
+          standarNasional: this.parseString(columns[76] || 'standar_kompetensi_lulusan'),
+          sumberDana: this.parseString(columns[77] || 'bos_reguler'),
           idGiat: this.parseString(columns[4]),
           kodeGiat: this.parseString(columns[5]),
           namaGiat: this.parseString(columns[6]),
@@ -131,7 +190,7 @@ export class CSVParser {
           pajak: this.parseString(columns[19]),
           volume: this.parseNumber(columns[20]),
           hargaSatuan: this.parseNumber(columns[21]),
-          koefisien: this.parseNumber(columns[22]),
+          koefisien: this.parseString(columns[22]),
           vol1: this.parseNumber(columns[23]),
           sat1: this.parseString(columns[24]),
           vol2: this.parseNumber(columns[25]),
@@ -145,7 +204,25 @@ export class CSVParser {
           subRincian: this.parseString(columns[33]),
           keteranganRincian: this.parseString(columns[34]),
           keterangan: this.parseString(columns[35]),
-          // AKB columns (36-52)
+          // Anggaran columns (36-52)
+          anggaranBulan1: this.parseNumber(columns[36]),
+          anggaranBulan2: this.parseNumber(columns[37]),
+          anggaranBulan3: this.parseNumber(columns[38]),
+          anggaranTw1: this.parseNumber(columns[39]),
+          anggaranBulan4: this.parseNumber(columns[40]),
+          anggaranBulan5: this.parseNumber(columns[41]),
+          anggaranBulan6: this.parseNumber(columns[42]),
+          anggaranTw2: this.parseNumber(columns[43]),
+          anggaranBulan7: this.parseNumber(columns[44]),
+          anggaranBulan8: this.parseNumber(columns[45]),
+          anggaranBulan9: this.parseNumber(columns[46]),
+          anggaranTw3: this.parseNumber(columns[47]),
+          anggaranBulan10: this.parseNumber(columns[48]),
+          anggaranBulan11: this.parseNumber(columns[49]),
+          anggaranBulan12: this.parseNumber(columns[50]),
+          anggaranTw4: this.parseNumber(columns[51]),
+          totalAkb: this.parseNumber(columns[52]),
+          // Legacy AKB fields for backward compatibility
           akbBulan1: this.parseNumber(columns[36]),
           akbBulan2: this.parseNumber(columns[37]),
           akbBulan3: this.parseNumber(columns[38]),
@@ -162,7 +239,6 @@ export class CSVParser {
           akbBulan11: this.parseNumber(columns[49]),
           akbBulan12: this.parseNumber(columns[50]),
           akbTw4: this.parseNumber(columns[51]),
-          totalAkb: this.parseNumber(columns[52]),
           // Realisasi columns (53-69)
           realisasiBulan1: this.parseNumber(columns[53]),
           realisasiBulan2: this.parseNumber(columns[54]),

@@ -16,7 +16,7 @@ export interface ColumnDefinition {
     pattern?: string
     message?: string
   }
-  defaultValue?: any
+  defaultValue?: unknown
   description?: string
   group?: string
   order: number
@@ -189,6 +189,99 @@ export const DEFAULT_COLUMNS: ColumnDefinition[] = [
     updated_at: new Date().toISOString()
   },
   {
+    id: 'bidang_kegiatan',
+    name: 'bidang_kegiatan',
+    label: 'Bidang Kegiatan',
+    type: 'select',
+    required: false,
+    visible: true,
+    editable: true,
+    sortable: true,
+    filterable: true,
+    group: 'kegiatan',
+    order: 11,
+    options: [
+      'Pendidikan',
+      'Kesehatan',
+      'Infrastruktur',
+      'Ekonomi',
+      'Sosial',
+      'Lingkungan',
+      'Keamanan',
+      'Pemerintahan',
+      'Teknologi Informasi',
+      'Pariwisata',
+      'Pertanian',
+      'Perikanan',
+      'Kehutanan',
+      'Energi',
+      'Transportasi'
+    ],
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'standar_nasional',
+    name: 'standar_nasional',
+    label: 'Standar Nasional',
+    type: 'select',
+    required: false,
+    visible: true,
+    editable: true,
+    sortable: true,
+    filterable: true,
+    group: 'identifikasi',
+    order: 12,
+    options: [
+      'SNI (Standar Nasional Indonesia)',
+      'SPM (Standar Pelayanan Minimal)',
+      'SBK (Standar Biaya Khusus)',
+      'SBU (Standar Biaya Umum)',
+      'NSPK (Norma, Standar, Prosedur, dan Kriteria)',
+      'Standar Akuntansi Pemerintahan',
+      'Standar Audit Intern Pemerintah',
+      'Standar Kompetensi Kerja Nasional',
+      'Standar Nasional Pendidikan',
+      'Standar Pelayanan Publik',
+      'Standar Keselamatan dan Kesehatan Kerja',
+      'Standar Lingkungan Hidup'
+    ],
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'sumber_dana',
+    name: 'sumber_dana',
+    label: 'Sumber Dana',
+    type: 'select',
+    required: false,
+    visible: true,
+    editable: true,
+    sortable: true,
+    filterable: true,
+    group: 'anggaran',
+    order: 13,
+    options: [
+      'APBN (Anggaran Pendapatan dan Belanja Negara)',
+      'APBD Provinsi (Anggaran Pendapatan dan Belanja Daerah Provinsi)',
+      'APBD Kabupaten/Kota (Anggaran Pendapatan dan Belanja Daerah Kabupaten/Kota)',
+      'Dana Alokasi Umum (DAU)',
+      'Dana Alokasi Khusus (DAK)',
+      'Dana Bagi Hasil (DBH)',
+      'Dana Desa',
+      'Dana Hibah',
+      'Dana Bantuan Sosial',
+      'Dana CSR (Corporate Social Responsibility)',
+      'Dana Swadaya Masyarakat',
+      'Dana Pinjaman/Kredit',
+      'Dana Investasi Swasta',
+      'Dana Kerjasama Internasional',
+      'Dana BUMN/BUMD'
+    ],
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
     id: 'tahun',
     name: 'tahun',
     label: 'Tahun',
@@ -199,7 +292,7 @@ export const DEFAULT_COLUMNS: ColumnDefinition[] = [
     sortable: true,
     filterable: true,
     group: 'periode',
-    order: 11,
+    order: 14,
     validation: { min: 2020, max: 2030 },
     defaultValue: new Date().getFullYear(),
     created_at: new Date().toISOString(),

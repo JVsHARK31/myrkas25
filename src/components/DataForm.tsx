@@ -323,7 +323,7 @@ export const DataForm: React.FC<DataFormProps> = ({ isOpen, onClose, onSave, ite
             {activeTab === 'basic' && (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {columns
-                  .filter(col => ['kode_bidang', 'nama_bidang', 'kode_standar', 'nama_standar', 'nama_giat', 'nama_komponen', 'satuan', 'volume', 'harga_satuan', 'koefisien', 'tahun'].includes(col.name))
+                  .filter(col => ['kode_bidang', 'nama_bidang', 'kode_standar', 'nama_standar', 'nama_giat', 'nama_komponen', 'bidang_kegiatan', 'standar_nasional', 'sumber_dana', 'satuan', 'volume', 'harga_satuan', 'koefisien', 'tahun'].includes(col.name))
                   .map(column => (
                     <div key={column.id}>
                       <label className="block text-sm font-medium mb-2">
@@ -478,7 +478,7 @@ export const DataForm: React.FC<DataFormProps> = ({ isOpen, onClose, onSave, ite
             {activeTab === 'details' && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {columns
-                  .filter(col => !['kode_bidang', 'nama_bidang', 'kode_standar', 'nama_standar', 'nama_giat', 'nama_komponen', 'satuan', 'volume', 'harga_satuan', 'koefisien', 'tahun'].includes(col.name))
+                  .filter(col => !['kode_bidang', 'nama_bidang', 'kode_standar', 'nama_standar', 'nama_giat', 'nama_komponen', 'bidang_kegiatan', 'standar_nasional', 'sumber_dana', 'satuan', 'volume', 'harga_satuan', 'koefisien', 'tahun'].includes(col.name))
                   .filter(col => !col.name.startsWith('bulan_') && !col.name.startsWith('realisasi_') && !col.name.startsWith('tw_'))
                   .map(column => (
                     <div key={column.id}>
